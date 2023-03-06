@@ -1,0 +1,53 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #000;
+}
+
+#logo{
+    width: 80%;
+    margin-left: 10px;
+
+}
+
+.navbar-brand{
+    width: 40px;
+}
+
+.container-fluid{
+    padding: 0;
+}
+
+button.navbar-toggler{
+    margin-right: 10px;
+}
+
+button.btn-outline-success{
+    margin-right: 14px;
+}
+
+.card{
+    width: 14rem;
+    margin: 1.2rem;
+}
+
+.info-movie{
+    display: flex;
+    justify-content: space-around;
+}
+
+.infos{
+    flex-grow: 1;
+    margin-bottom: 6px;
+}
+
+#lista-filmes{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}

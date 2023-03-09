@@ -1,3 +1,4 @@
+/*
 let ator = new Ator(1, "JOHN WAYNE")
 
 console.log(ator);
@@ -6,18 +7,25 @@ let diretor = new Diretor(1, "Alfred Hitchcock")
 
 console.log(diretor);
 
-let genero = ["Açao", "Ficção Científica"];
-let sinopse = "Um jovem programador (Keanu Reeves) é atormentado por estranhos pesadelos nos quais sempre está conectado por cabos a um imenso sistema de computadores do futuro. À medida que o sonho se repete, ele começa a levantar dúvidas sobre a realidade. E quando encontra os misteriosos Morpheus e Trinity, ele descobre que é vítima do Matrix, um sistema inteligente e artificial que manipula a mente das pessoas e cria a ilusão de um mundo real enquanto usa os cérebros e corpos dos indivíduos para produzir energia.";
 let direcao = [
     new Diretor(1, "Lana"),
     new Diretor(2, "Lilly")    
 ];
 
 let elenco = [
-    new Ator(1, "Keanu"),
-    new Ator(2, "Carrie-Anne"),
-    new Ator(3, "Laurence")
+    new Ator(1, "Keanu Reeves"),
+    new Ator(2, "Carrie-Anne Moss"),
+    new Ator(3, "Laurence Fishburne"),
+    new Ator(4, "Joe Pantoliano"),
+    new Ator(5, "Hugo Weaving"),
+    new Ator(6, "Antony Ray Parker")
 ];
+
+let sinopse = "Um jovem programador (Keanu Reeves) é atormentado por estranhos pesadelos nos quais sempre está conectado por cabos a um imenso sistema de computadores do futuro. À medida que o sonho se repete, ele começa a levantar dúvidas sobre a realidade. E quando encontra os misteriosos Morpheus e Trinity, ele descobre que é vítima do Matrix, um sistema inteligente e artificial que manipula a mente das pessoas e cria a ilusão de um mundo real enquanto usa os cérebros e corpos dos indivíduos para produzir energia.";
+
+let cartaz = "https://img.elo7.com.br/product/zoom/2679A20/big-poster-filme-matrix-lo03-tamanho-90x60-cm-geek.jpg";
+
+let genero = ["Açao", "Ficção Científica"];
 
 let filme = new Filmes(
     1,
@@ -26,22 +34,108 @@ let filme = new Filmes(
     genero,
     136,
     sinopse,
-    "https://img.elo7.com.br/product/zoom/2679A20/big-poster-filme-matrix-lo03-tamanho-90x60-cm-geek.jpg",
+    cartaz,
     direcao,
     elenco,
     14,
-    8,8
+    null
 );
 
 console.log(filme);
+*/
 
-fetch('http://www.omdbapi.com/?s=uva&apikey=ee5ea508').then(resp =>{
-    console.log(resp)
-    return resp.json()
-}).then(corpo =>{
-    console.log(corpo)
-    console.log(corpo.Search)
-    corpo.Search.forEach(element => {
-        console.log(element.title)
+let inputBuscarFilme = document.querySelector("#input-buscar-filme");
+let btnBuscarFilme = document.querySelector("#btn-buscar-filme");
+
+btnBuscarFilme.onclick = () => {
+    if(inputBuscarFilme.value.length > 0){
+        console.log(inputBuscarFilme.value);
+    }
+    return false;
+}
+
+btnBuscarFilme.onclick = () => {
+    if(inputBuscarFilme.value.length > 0){
+        fetch("http://www.omdbapi.com/?apikey=ee5ea508&s="+inputBuscarFilme.value, {mode:"cors"})
+        .then((resp)=> resp.json())
+        .then((resp)=> {
+          console.log(resp);
+        })
+    }
+    return false;
+}
+
+getCard = async () => {
+    let card = document.createElement("div");
+    card.setAttribute("class","card");
+    let imgCartaz = document.createElement("img");
+    imgCartaz.setAttribute("class","card-img-topz");
+    imgCartaz.setAttribute("src",this.cartaz);
+    let cardBody = document.createElement("div");
+    cardBody.setAttribute("class","card-body");
+    let hCardTitle = document.createElement("h5");
+    hCardTitle.setAttribute("class","card-title");
+    let divDetalhes = document.createElement("div");
+    divDetalhes.setAttribute("style","display:flex; justify-content:space-arund;");
+    let divGenero = document.createElement("div");
+    divGenero.setAttribute("style","flex-grow:1;");
+    let divAnoPrducao = document.createElement("div");
+    divAnoPrducao.setAttribute("style","flex-grow:1;");
+    let divClassificacao = document.createElement("div");
+    divClassificacao.setAttribute("style","flex-grow:1;");
+    hCardTitle.appendChild(document.createTextNode(this.titulo));
+    divGenero.appendChild(document.createTextNode(this.genero));
+    divAnoPrducao.appendChild(document.createTextNode(this.ano));
+    divClassificacao.appendChild(document.createTextNode(this.classificacao));
+    divDetalhes.appendChild(divGenero);
+    divDetalhes.appendChild(divAnoPrducao);
+    divDetalhes.appendChild(divClassificacao);
+    card.appendChild(imgCartaz);
+    card.appendChild(cardBody);
+    cardBody.appendChild(hCardTitle);
+    cardBody.appendChild(divDetalhes);
+    return card;
+}
+
+btnBuscarFilme.onclick = async () => {
+    if(inputBuscarFilme.value.length > 0){
+      let filmes = new Array();
+      fetch("http://www.omdbapi.com/?apikey=ee5ea508&s="+inputBuscarFilme.value)
+      .then((resp)=> resp.json())
+      .then((resp)=> {
+        resp.Search.forEach((item)=>{
+          console.log(item);
+          let filme = new Filme(
+            item.imdbID,
+            item.Title,
+            item.Year,
+            null,
+            null,
+            item.Poster,
+            null,
+            null,
+            null,
+            null,
+            null
+          );
+          filmes.push(filme);
+
+        });
+        listarFilmes(filmes);
+        
+      })
+
+    }
+    return false;
+}
+
+let listarFilmes = async (filmes) => {
+  let listaFilmes = await document.querySelector("#lista-filmes");
+  listaFilmes.innerHTML = "";
+  console.log(listaFilmes);
+  if(filmes.length > 0) {
+    filmes.forEach(async(filme) => {
+      listaFilmes.appendChild(await filme.getCard());
     });
-})
+  }
+}

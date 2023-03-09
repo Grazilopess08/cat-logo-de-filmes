@@ -14,7 +14,7 @@ class Diretor
     }
 }
 
-class Filmes
+class Filme
 {
     constructor(id, titulo, ano, genero, duracao, sinopse, cartaz, direcao, elenco, classificacao, avaliacao){
         this.id=id;

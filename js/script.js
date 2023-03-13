@@ -46,6 +46,7 @@ console.log(filme);
 
 let inputBuscarFilme = document.querySelector("#input-buscar-filme");
 let btnBuscarFilme = document.querySelector("#btn-buscar-filme");
+//let btnDetalhes = document.querySelectorAll("#btn-detalhes");
 
 btnBuscarFilme.onclick = () => {
     if(inputBuscarFilme.value.length > 0){
@@ -79,8 +80,8 @@ btnBuscarFilme.onclick = async () => {
                       item.Year,
                       null,
                       null,
-                      item.Poster,
                       null,
+                      item.Poster,
                       null,
                       null,
                       null,
@@ -107,3 +108,11 @@ let listarFilmes = async (filmes) => {
 		});
 	}
 }
+
+element.addEventListener("click",myFunction);
+function myFunction(){
+    document.getElementById("bntDetalhes").innerHTML
+}
+
+
+

@@ -60,7 +60,12 @@ class Filme
     card.appendChild(cardBody);
     cardBody.appendChild(hCardTitle);
     cardBody.appendChild(divDetalhes);
-        return card;
+    let btnDetalhes = document.createElement('button');
+    btnDetalhes.appendChild(document.createTextNode("Detalhes"));
+    btnDetalhes.setAttribute("id",(this.id));
+    btnDetalhes.setAttribute("class", "btnDetalhes");
+    cardBody.appendChild(btnDetalhes);
+    return card;
     }
 }
 

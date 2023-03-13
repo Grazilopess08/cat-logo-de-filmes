@@ -32,7 +32,23 @@ button.btn-outline-success{
 .card{
     width: 14rem;
     margin: 1.2rem;
+    background-color: #000;
+    color: #fff;
+    border-color: #c3ff75;
 }
+
+div.card-body{
+    width: 224px;
+    justify-content: center;
+}
+
+img.card-img-topz{
+    border-radius: 10px;
+    margin: 5px;
+    height: 32
+    0px;
+}
+
 
 .info-movie{
     display: flex;
@@ -58,4 +74,15 @@ a.nav-link{
 
 input{
     margin-left: 8px;
+}
+
+.btnDetalhes{
+    width: 190px;
+    justify-content: center;
+    padding: 2px auto;
+    margin: 2px auto;
+    margin-top: 5px;
+    border-radius: 5px;
+    height: 35px;
+    background-color: #c3ff75;
 }

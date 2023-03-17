@@ -101,18 +101,33 @@ btnBuscarFilme.onclick = async () => {
 let listarFilmes = async (filmes) => {
 	let listaFilmes = await document.querySelector("#lista-filmes");
 	listaFilmes.innerHTML = "";
-	console.log(listaFilmes);
+	//console.log(listaFilmes);
 	if(filmes.length > 0) {
 		filmes.forEach(async(filme) => {
+            console.log(filme);
 			listaFilmes.appendChild(await filme.getCard());
+            filme.getBtnDetalhes().onclick=()=>{
+                detalhesFilme(filme.id);
+            }
 		});
 	}
 }
 
-element.addEventListener("click",myFunction);
-function myFunction(){
-    document.getElementById("bntDetalhes").innerHTML
+setBtnDetalhes= () => {
+    this.btnDetalhes = document.createElement('button');
+    this.btnDetalhes.appendChild(document.createTextNode("Detalhes"));
+    this.btnDetalhes.setAttribute("id", this.id);
+    this.btnDetalhes.setAttribute("class", "btnDetalhesFilme");
 }
 
+getBtnDetalhes=()=>{
+    return this.btnDetalhes
+}
 
+let btnDetalhesFilme = async (id)=>{
+    fetch("http://www.omdbapi.com/?apikey=ee5ea508&i="+id)
+    .then((resp)=> resp.json())
+    .then((resp)=> {
 
+    });
+}

@@ -6,6 +6,7 @@ class Ator
     }
 }
 
+
 class Diretor
 {
     constructor(id, nome){
@@ -13,6 +14,7 @@ class Diretor
         this.id=id;
     }
 }
+
 
 class Filme
 {
@@ -29,7 +31,9 @@ class Filme
         this.classificacao=classificacao;
         this.avaliacao=avaliacao;
         this.btnDetalhes=null;
+
     }
+
 
     getCard = async () => {
     let card = document.createElement("div");
@@ -49,6 +53,10 @@ class Filme
     divAnoPrducao.setAttribute("style","flex-grow:1;");
     let divClassificacao = document.createElement("div");
     divClassificacao.setAttribute("style","flex-grow:1;");
+    let btnDetalhes = document.createElement('button');
+    btnDetalhes.appendChild(document.createTextNode("Detalhes"));
+    btnDetalhes.setAttribute("id",(this.id));
+    btnDetalhes.setAttribute("class", "btnDetalhesFilme");
     hCardTitle.appendChild(document.createTextNode(this.titulo));
     divGenero.appendChild(document.createTextNode(this.genero));
     divAnoPrducao.appendChild(document.createTextNode(this.ano));
@@ -60,11 +68,11 @@ class Filme
     card.appendChild(cardBody);
     cardBody.appendChild(hCardTitle);
     cardBody.appendChild(divDetalhes);
-    
-    this.setBtnDetalhes();
-    cardBody.appendChild(this.getBtnDetalhes());
-
+    cardBody.appendChild(btnDetalhes);
     return card;
     }
-}
 
+    getBtnDetalhes=()=>{
+        return this.btnDetalhes
+    }
+}

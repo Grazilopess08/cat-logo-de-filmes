@@ -42,13 +42,16 @@ div.card-body{
     justify-content: center;
 }
 
-img.card-img-topz{
-    border-radius: 10px;
-    margin: 5px;
-    height: 32
-    0px;
+h5.card-title{
+    height: 65px;
 }
 
+img.card-img-topz{
+    height: 200px;
+    border-radius: 5px;
+    margin: 5px;
+    height: 320px;
+}
 
 .info-movie{
     display: flex;

@@ -71,6 +71,10 @@ img.card-img-topz{
     padding-bottom: 2rem;
 }
 
+#mostrar-filmes{
+    display: block;
+}
+
 a.nav-link{
     margin-left: 8px;
 }
@@ -89,3 +93,4 @@ input{
     height: 35px;
     background-color: #c3ff75;
 }
+

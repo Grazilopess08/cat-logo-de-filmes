@@ -94,51 +94,49 @@ btnBuscarFilme.onclick = () => {
 
 let listarFilmes = async (filmes) => {
     let listaFilmes = await document.querySelector("#lista-filmes");
+    listaFilmes.style.display = "flex";
     listaFilmes.innerHTML = "";
-    console.log(listaFilmes);
+    document.querySelector("#mostrar-filme").innerhtml="";
+    document.querySelector("#mostrar-filme").style.display = "none";
     if(filmes.length > 0) {
         filmes.forEach(async(filme) => {
+            console.log(filme);
             listaFilmes.appendChild(await filme.getCard());
+            //console.log("*");
+            console.log(filme.getBtnDetalhes());
+            filme.getBtnDetalhes().onclick=() => {
+                //console.log(1);
+                detalhesFilme(filme.id);
+            }
         });
     }
 }
 
 let detalhesFilme = async (id)=>{
+    //console.log(0);
     fetch("http://www.omdbapi.com/?apikey=ee5ea508&i="+id)
     .then((resp)=>resp.json())
     .then((resp)=>{
         console.log(resp);
         let filme=new Filme(
             resp.imdbID,
-            resp,Title,
+            resp.Title,
             resp.Year,
             resp.Genre.split(","),
             resp.Runtime,
             resp.Poster,
-            resp.plot,
+            resp.Plot,
             resp.Director,
             resp.Actors.split(","),
             resp.Awards,
             resp.imdbRating
         )
 
-        console.log(filme);
-    })
+        document.querySelector("#mostrar-filme").appendChild(filme.getDetalhesFilme);
+        document.querySelector("#lista-filmes").style.display="none";
+        document.querySelector("#mostrar-filme").style.display="flex";
+    });
     
 }
 
-let listaFilmes = async (filme) => {
-    let listaFilme = await document.querySelector("#lista-filmes");
-    listaFilmes.innerHTML = "";
-    //console.log(listaFilme);
-    if(filme.length > 0) {
-        filme.forEach(async(filme) => {
-            console.log(filme);
-            listaFilmes.appendChild(await filme.getCard());
-            filme.this.btnDetalhes().onclik=() => {
-                detalhesFilme(filme.id);
-            }
-        })
-    }
 
-}

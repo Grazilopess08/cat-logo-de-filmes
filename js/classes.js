@@ -53,10 +53,7 @@ class Filme
     divAnoPrducao.setAttribute("style","flex-grow:1;");
     let divClassificacao = document.createElement("div");
     divClassificacao.setAttribute("style","flex-grow:1;");
-    let btnDetalhes = document.createElement('button');
-    btnDetalhes.appendChild(document.createTextNode("Detalhes"));
-    btnDetalhes.setAttribute("id",(this.id));
-    btnDetalhes.setAttribute("class", "btnDetalhesFilme");
+    
     hCardTitle.appendChild(document.createTextNode(this.titulo));
     divGenero.appendChild(document.createTextNode(this.genero));
     divAnoPrducao.appendChild(document.createTextNode(this.ano));
@@ -64,15 +61,62 @@ class Filme
     divDetalhes.appendChild(divGenero);
     divDetalhes.appendChild(divAnoPrducao);
     divDetalhes.appendChild(divClassificacao);
+    
     card.appendChild(imgCartaz);
     card.appendChild(cardBody);
     cardBody.appendChild(hCardTitle);
     cardBody.appendChild(divDetalhes);
-    cardBody.appendChild(btnDetalhes);
+
+    this.setBtnDetalhes();
+    cardBody.appendChild(this.getBtnDetalhes());
+
     return card;
     }
 
+    setBtnDetalhes=()=>{
+        this.btnDetalhes = document.createElement('button');
+        this.btnDetalhes.appendChild(document.createTextNode("Detalhes"));
+        this.btnDetalhes.setAttribute("id", this.id);
+        this.btnDetalhes.setAttribute("class", "btnDetalhesFilme");
+    }
+
     getBtnDetalhes=()=>{
-        return this.btnDetalhes
+        return this.btnDetalhes;
+    }
+
+    getDetalhesFilme = async ()=>{
+    let cardDetalhes = document.createElement("div");
+    cardDetalhes.setAttribute("class","cardDetalhes");
+    let imgCartaz = document.createElement("img");
+    imgCartaz.setAttribute("class","card-img-detalhes");
+    imgCartaz.setAttribute("src",this.cartaz);
+    let cardDetalhesBody = document.createElement("div");
+    cardDetalhesBody.setAttribute("class","card-detalhes-body");
+    let hCardTitle = document.createElement("h5");
+    hCardTitle.setAttribute("class","card-detalhes-title");
+    let divGenero = document.createElement("div");
+    divGenero.setAttribute("style","flex-grow:1;");
+    let divAnoPrducao = document.createElement("div");
+    divAnoPrducao.setAttribute("style","flex-grow:1;");
+    let divClassificacao = document.createElement("div");
+    divClassificacao.setAttribute("style","flex-grow:1;");
+    
+    hCardTitle.appendChild(document.createTextNode(this.titulo));
+    divGenero.appendChild(document.createTextNode(this.genero));
+    divAnoPrducao.appendChild(document.createTextNode(this.ano));
+    divClassificacao.appendChild(document.createTextNode(this.classificacao));
+    divDetalhes.appendChild(divGenero);
+    divDetalhes.appendChild(divAnoPrducao);
+    divDetalhes.appendChild(divClassificacao);
+    
+    cardDetalhes.appendChild(imgCartaz);
+    cardDetalhes.appendChild(cardDetalhesBody);
+    cardDetalhesBody.appendChild(hCardTitle);
+    cardDetalhesBody.appendChild(divDetalhes);
+
+    this.setBtnDetalhes();
+    cardBody.appendChild(this.getBtnDetalhes());
+
+    return detalhesfilme;
     }
 }

@@ -103,7 +103,7 @@ let listarFilmes = async (filmes) => {
             console.log(filme);
             listaFilmes.appendChild(await filme.getCard());
             //console.log("*");
-            console.log(filme.getBtnDetalhes());
+            //console.log(filme.getBtnDetalhes());
             filme.getBtnDetalhes().onclick=() => {
                 //console.log(1);
                 detalhesFilme(filme.id);
@@ -132,7 +132,7 @@ let detalhesFilme = async (id)=>{
             resp.imdbRating
         )
 
-        document.querySelector("#mostrar-filme").appendChild(filme.getDetalhesFilme);
+        document.querySelector("#mostrar-filme").appendChild(filme.getDetalhesFilme());
         document.querySelector("#lista-filmes").style.display="none";
         document.querySelector("#mostrar-filme").style.display="flex";
     });

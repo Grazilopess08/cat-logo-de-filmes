@@ -74,18 +74,39 @@ class Filme
     return card;
     }
 
-    setBtnDetalhes=()=>{
+    setBtnDetalhes=() => {
         this.btnDetalhes = document.createElement('button');
         this.btnDetalhes.appendChild(document.createTextNode("Detalhes"));
         this.btnDetalhes.setAttribute("id", this.id);
         this.btnDetalhes.setAttribute("class", "btnDetalhesFilme");
     }
 
-    getBtnDetalhes=()=>{
-        return this.btnDetalhes;
+    getBtnDetalhes=() => {
+    return this.btnDetalhes;
     }
 
-    getDetalhesFilme = async ()=>{
-    return detalhesFilme;
+    getDetalhesFilme = async () => {
+        let detalhesFilme = document.createElement("div");
+        detalhesFilme.setAttribute("class","card md-3","style","max-width: 540px;");
+        let imgCartaz = document.createElement("img");
+        imgCartaz.setAttribute("class","img-fluid rounded-star");   
+        imgCartaz.setAttribute("src",this.cartaz);
+        let detalhesBody = document.createElement("div");
+        detalhesBody.setAttribute("class","detalhes-body");
+        let hDetalhesTitle = document.createElement("h5");
+        hDetalhesTitle.setAttribute("class","detalhes-title");
+        let pDetalhesText = document.createElement("p");
+        pDetalhesText.setAttribute("class","detalhes-text");
+
+        hDetalhesTitle.appendChild(document.createTextNode(this.titulo));
+        pDetalhesText.appendChild(document.createTextNode(this.sinopse));
+        
+        detalhesFilme.appendChild(imgCartaz);
+        detalhesFilme.appendChild(detalhesBody);
+        detalhesFilme.appendChild(hDetalhesTitle);
+        detalhesFilme.appendChild(pDetalhesText);
+        
+        return detalhesFilme;
     }
+    
 }

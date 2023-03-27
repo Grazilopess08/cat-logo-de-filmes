@@ -37,6 +37,7 @@ console.log(filme);
 
 let inputBuscarFilme = document.querySelector("#input-buscar-filme");
 let btnBuscarFilme = document.querySelector("#btn-buscar-filme");
+//document.querySelector("#mostrar-detalhes").style.display = "none";
 
 
 btnBuscarFilme.onclick = () => {
@@ -84,6 +85,7 @@ btnBuscarFilme.onclick = () => {
                  
               });
               listarFilmes(filmes);
+              //document.querySelector("#mostrar-detalhes").style.display = "none";
              
           })
          
@@ -131,12 +133,54 @@ let detalhesFilme = async (id)=>{
             resp.Awards,
             resp.imdbRating
         )
-
+        
+        console.log(filme);
         document.querySelector("#mostrar-filme").appendChild(filme.getDetalhesFilme());
+        
+        document.querySelector("#btnFechar").onclick = () =>{
+            document.querySelector("#lista-filmes").style.display="flex";
+            document.querySelector("#mostrar-filme").innerHTML="";
+            document.querySelector("#mostrar-filme").style.display="none";
+        }    
+        document.querySelector("#btnSalvar").onclick = () =>{
+            salvarFilme(filme);
+        }
         document.querySelector("#lista-filmes").style.display="none";
         document.querySelector("#mostrar-filme").style.display="flex";
     });
     
 }
 
+let filmeString = localStorage.getItem('filmesFavoritos');
+var filme = JSON.parse(filmeString);
+filmes.push(filme);
+filme=JSON.stringify(filme);
+localStorage.setItem('filmesFavoritos', filme);
 
+let navFavoritos = document.querySelector("#nav-favoritos");
+navFavoritos.onclick = () =>{
+    listarFavoritos= function () {
+        let filmesFavoritos = localStorage.getItem('filmesFavoritos');
+        filmesFavoritos = JOSON.parse(filmesFavoritos);
+    } 
+}
+
+filmesFavoritos=JSON.parse(filmesFavoritos);
+let filmes=new Array();
+filmesFavoritos.forEach((item)=>{
+    let filme = new Filme(
+        item.id,
+        item.titulo,
+        item.ano,
+        item.genero,
+        item.duracao,
+        item.cartaz,
+        item.direcao,
+        item.elenco,
+        item.classificacao,
+        item.avaliacao
+    );
+    filme.push(filme);
+});
+
+listarFilmes(filmes);

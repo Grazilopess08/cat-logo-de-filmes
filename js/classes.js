@@ -87,24 +87,50 @@ class Filme
 
     getDetalhesFilme = async () => {
         let detalhesFilme = document.createElement("div");
-        detalhesFilme.setAttribute("class","card md-3","style","max-width: 540px;");
+        detalhesFilme.setAttribute("class","detalhesFilme");
+        detalhesFilme.setAttribute("style","display: flex; padding:1.5rem;")
         let imgCartaz = document.createElement("img");
-        imgCartaz.setAttribute("class","img-fluid rounded-star");   
+        imgCartaz.setAttribute("class","detalhes-img-cartaz");   
         imgCartaz.setAttribute("src",this.cartaz);
         let detalhesBody = document.createElement("div");
         detalhesBody.setAttribute("class","detalhes-body");
+        detalhesBody.setAttribute("style","margin-left:1.5rem;");
         let hDetalhesTitle = document.createElement("h5");
         hDetalhesTitle.setAttribute("class","detalhes-title");
-        let pDetalhesText = document.createElement("p");
-        pDetalhesText.setAttribute("class","detalhes-text");
-
+        hDetalhesTitle.setAttribute("style","text-align:center;");
         hDetalhesTitle.appendChild(document.createTextNode(this.titulo));
-        pDetalhesText.appendChild(document.createTextNode(this.sinopse));
+        let divDetalhesFilmes = document.createElement("div");
+        divDetalhesFilmes.setAttribute("style","display:flex; justify-content:space-around; flex-direction: column; align-items: center;")
+
+        let divAno = document.createElement("div");
+        divAno.appendChild(document.createTextNode(this.ano));
+        let divGenero = document.createElement("div");
+        divGenero.appendChild(document.createTextNode(this.genero));
+        let divDuracao = document.createElement("div");
+        divDuracao.appendChild(document.createTextNode(this.duracao));
+        let divSinopse = document.createElement("div");
+        divSinopse.appendChild(document.createTextNode(this.sinopse));
+        let divDirecao = document.createElement("div");
+        divDirecao.appendChild(document.createTextNode(this.direcao));
+        let divElenco = document.createElement("div");
+        divElenco.appendChild(document.createTextNode(this.elenco));
+        let divAvaliacao = document.createElement("div");
+        divAvaliacao.appendChild(document.createTextNode(this.avaliacao));
         
+        divDetalhesFilmes.appendChild(divAno);
+        divDetalhesFilmes.appendChild(divGenero);
+        divDetalhesFilmes.appendChild(divDuracao);
+        divDetalhesFilmes.appendChild(divSinopse);
+        divDetalhesFilmes.appendChild(divDirecao);
+        divDetalhesFilmes.appendChild(divElenco);
+        divDetalhesFilmes.appendChild(divAvaliacao);
+
         detalhesFilme.appendChild(imgCartaz);
         detalhesFilme.appendChild(detalhesBody);
-        detalhesFilme.appendChild(hDetalhesTitle);
-        detalhesFilme.appendChild(pDetalhesText);
+
+        detalhesBody.appendChild(hDetalhesTitle);
+        detalhesBody.appendChild(divDetalhesFilmes);
+    
         
         return detalhesFilme;
     }

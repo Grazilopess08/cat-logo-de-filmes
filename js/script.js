@@ -37,33 +37,14 @@ console.log(filme);
 
 let inputBuscarFilme = document.querySelector("#input-buscar-filme");
 let btnBuscarFilme = document.querySelector("#btn-buscar-filme");
+let listaFilmes = document.querySelector("#lista-filmes");
+let mostrarFilmes = document.querySelector("#mostrar-filme");
 //document.querySelector("#mostrar-detalhes").style.display = "none";
-
-
-btnBuscarFilme.onclick = () => {
-    if(inputBuscarFilme.value.length > 0){
-        console.log(inputBuscarFilme.value);
-    }
-    return false;
-}
-
-
-btnBuscarFilme.onclick = () => {
-    if(inputBuscarFilme.value.length > 0){
-        fetch("http://www.omdbapi.com/?apikey=ee5ea508&s="+inputBuscarFilme.value, {mode:"cors"})
-        .then((resp)=> resp.json())
-        .then((resp)=> {
-          console.log(resp);
-        })
-    }
-    return false;
-}
-
 
 btnBuscarFilme.onclick = () => {
     if(inputBuscarFilme.value.length > 0){
           let filmes = new Array();
-      fetch("http://www.omdbapi.com/?apikey=ee5ea508&s="+inputBuscarFilme.value)
+      fetch("http://www.omdbapi.com/?apikey=ee5ea508&s="+inputBuscarFilme.value, {mode:"cors"})
           .then((resp)=> resp.json())
           .then((resp)=> {
               resp.Search.forEach((item)=>{
@@ -90,32 +71,36 @@ btnBuscarFilme.onclick = () => {
           })
          
     }
+    mostrarFilmes.style.display = "none";
     return false;
   }
 
 
 let listarFilmes = async (filmes) => {
-    let listaFilmes = await document.querySelector("#lista-filmes");
     listaFilmes.style.display = "flex";
     listaFilmes.innerHTML = "";
-    document.querySelector("#mostrar-filme").innerhtml="";
-    document.querySelector("#mostrar-filme").style.display = "none";
+    mostrarFilmes.style.display = "flex";
+    mostrarFilmes.innerHTML = "";
+    console.log(listaFilmes);
+    //document.querySelector("#mostrar-filme").innerhtml="";
+    //document.querySelector("#mostrar-filme").style.display = "none";
     if(filmes.length > 0) {
         filmes.forEach(async(filme) => {
             console.log(filme);
             listaFilmes.appendChild(await filme.getCard());
             //console.log("*");
             //console.log(filme.getBtnDetalhes());
-            filme.getBtnDetalhes().onclick=() => {
+            filme.getBtnDetalhes().onclick = async() => {
                 //console.log(1);
+                listaFilmes.style.display = "none";
                 detalhesFilme(filme.id);
             }
-        });
+        })
     }
 }
 
-let detalhesFilme = async (id)=>{
-    //console.log(0);
+let detalhesFilme = async (id) =>{
+    console.log(id);
     fetch("http://www.omdbapi.com/?apikey=ee5ea508&i="+id)
     .then((resp)=>resp.json())
     .then((resp)=>{
@@ -132,12 +117,15 @@ let detalhesFilme = async (id)=>{
             resp.Actors.split(","),
             resp.Awards,
             resp.imdbRating
-        )
+        );
         
-        console.log(filme);
-        document.querySelector("#mostrar-filme").appendChild(filme.getDetalhesFilme());
         
-        document.querySelector("#btnFechar").onclick = () =>{
+        console.log(filme.getDetalhesFilme());
+        mostrarFilmes.style.display = "flex";
+        mostrarFilmes.appendChild(filme.getDetalhesFilme());
+        //document.querySelector("#mostrar-filme").appendChild(filme.getDetalhesFilme());
+        //console.log(filme);
+        /*document.querySelector("#btnFechar").onclick = () =>{
             document.querySelector("#lista-filmes").style.display="flex";
             document.querySelector("#mostrar-filme").innerHTML="";
             document.querySelector("#mostrar-filme").style.display="none";
@@ -146,12 +134,12 @@ let detalhesFilme = async (id)=>{
             salvarFilme(filme);
         }
         document.querySelector("#lista-filmes").style.display="none";
-        document.querySelector("#mostrar-filme").style.display="flex";
+        document.querySelector("#mostrar-filme").style.display="flex"*/
     });
     
 }
 
-let filmeString = localStorage.getItem('filmesFavoritos');
+/*let filmeString = localStorage.getItem('filmesFavoritos');
 var filme = JSON.parse(filmeString);
 filmes.push(filme);
 filme=JSON.stringify(filme);
@@ -183,4 +171,5 @@ filmesFavoritos.forEach((item)=>{
     filme.push(filme);
 });
 
-listarFilmes(filmes);
+listarFilmes(filmes);*/
+

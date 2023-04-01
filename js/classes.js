@@ -18,7 +18,7 @@ class Diretor
 
 class Filme
 {
-    constructor(id, titulo, ano, genero, duracao, sinopse, cartaz, direcao, elenco, classificacao, avaliacao, btnDetalhes){
+    constructor(id, titulo, ano, genero, duracao, sinopse, cartaz, direcao, elenco, classificacao, avaliacao){
         this.id=id;
         this.titulo=titulo;
         this.ano=ano;
@@ -31,7 +31,6 @@ class Filme
         this.classificacao=classificacao;
         this.avaliacao=avaliacao;
         this.btnDetalhes=null;
-        this.divDetalhes=null;
 
     }
 
@@ -85,20 +84,26 @@ class Filme
     return this.btnDetalhes;
     }
 
-    getDetalhesFilme = async () => {
+    getDetalhesFilme = () => {
         let detalhesFilme = document.createElement("div");
         detalhesFilme.setAttribute("class","detalhesFilme");
         detalhesFilme.setAttribute("style","display: flex; padding:1.5rem;")
-        let imgCartaz = document.createElement("img");
-        imgCartaz.setAttribute("class","detalhes-img-cartaz");   
-        imgCartaz.setAttribute("src",this.cartaz);
+        
+        let img = document.createElement('img');
+        img.style.float = 'left';
+        img.setAttribute('src',this.cartaz);
+        img.setAttribute('class','img-fluid rounded-start');
+        img.setAttribute('alt','...');
+        
         let detalhesBody = document.createElement("div");
         detalhesBody.setAttribute("class","detalhes-body");
         detalhesBody.setAttribute("style","margin-left:1.5rem;");
+        
         let hDetalhesTitle = document.createElement("h5");
         hDetalhesTitle.setAttribute("class","detalhes-title");
         hDetalhesTitle.setAttribute("style","text-align:center;");
         hDetalhesTitle.appendChild(document.createTextNode(this.titulo));
+        
         let divDetalhesFilmes = document.createElement("div");
         divDetalhesFilmes.setAttribute("style","display:flex; justify-content:space-around; flex-direction: column; align-items: center;")
 
@@ -125,7 +130,7 @@ class Filme
         divDetalhesFilmes.appendChild(divElenco);
         divDetalhesFilmes.appendChild(divAvaliacao);
 
-        detalhesFilme.appendChild(imgCartaz);
+        detalhesFilme.appendChild(img);
         detalhesFilme.appendChild(detalhesBody);
 
         detalhesBody.appendChild(hDetalhesTitle);

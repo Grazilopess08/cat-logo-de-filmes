@@ -38,8 +38,14 @@ console.log(filme);
 let inputBuscarFilme = document.querySelector("#input-buscar-filme");
 let btnBuscarFilme = document.querySelector("#btn-buscar-filme");
 let listaFilmes = document.querySelector("#lista-filmes");
-let mostrarFilmes = document.querySelector("#mostrar-filme");
+let mostrarFilmes = document.getElementById("mostrar-filme");
+let fundo = document.getElementById('mostrar-fora');
 //document.querySelector("#mostrar-detalhes").style.display = "none";
+
+function divSome(){
+    fundo.style.display = "none";
+    mostrarFilmes.style.display = "none";
+}
 
 btnBuscarFilme.onclick = () => {
     if(inputBuscarFilme.value.length > 0){
@@ -60,27 +66,28 @@ btnBuscarFilme.onclick = () => {
                       null,    
                       null,
                       null,
+                      null,
                       null
                   );
                   filmes.push(filme);
                  
               });
               listarFilmes(filmes);
-              //document.querySelector("#mostrar-detalhes").style.display = "none";
+              //document.querySelector("detalhesFilme").style.display = "none";
              
           })
          
     }
-    mostrarFilmes.style.display = "none";
+    //mostrarFilmes.style.display = "none";
     return false;
   }
 
 
 let listarFilmes = async (filmes) => {
-    listaFilmes.style.display = "flex";
+    //listaFilmes.style.display = "flex";
     listaFilmes.innerHTML = "";
-    mostrarFilmes.style.display = "flex";
-    mostrarFilmes.innerHTML = "";
+    //mostrarFilmes.style.display = "flex";
+    //mostrarFilmes.innerHTML = "";
     console.log(listaFilmes);
     //document.querySelector("#mostrar-filme").innerhtml="";
     //document.querySelector("#mostrar-filme").style.display = "none";
@@ -94,6 +101,13 @@ let listarFilmes = async (filmes) => {
                 //console.log(1);
                 listaFilmes.style.display = "none";
                 detalhesFilme(filme.id);
+                mostrarFilmes.innerHTML = "";
+                let botao = document.createElement('img');
+                botao.setAttribute("src","./img/botao-fechar.png");
+                botao.setAttribute("onclick","divSome()");
+                mostrarFilmes.appendChild(botao);
+                mostrarFilmes.style.display = "block";
+                fundo.style.display = "block";
             }
         })
     }
@@ -104,7 +118,6 @@ let detalhesFilme = async (id) =>{
     fetch("http://www.omdbapi.com/?apikey=ee5ea508&i="+id)
     .then((resp)=>resp.json())
     .then((resp)=>{
-        console.log(resp);
         let filme=new Filme(
             resp.imdbID,
             resp.Title,
@@ -121,7 +134,7 @@ let detalhesFilme = async (id) =>{
         
         
         console.log(filme.getDetalhesFilme());
-        mostrarFilmes.style.display = "flex";
+        mostrarFilmes.style.display = "block";
         mostrarFilmes.appendChild(filme.getDetalhesFilme());
         //document.querySelector("#mostrar-filme").appendChild(filme.getDetalhesFilme());
         //console.log(filme);

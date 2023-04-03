@@ -1,48 +1,12 @@
-/*
-let ator = new Ator(1, "JOHN WAYNE")
-console.log(ator);
-let diretor = new Diretor(1, "Alfred Hitchcock")
-console.log(diretor);
-let direcao = [
-    new Diretor(1, "Lana"),
-    new Diretor(2, "Lilly")    
-];
-let elenco = [
-    new Ator(1, "Keanu Reeves"),
-    new Ator(2, "Carrie-Anne Moss"),
-    new Ator(3, "Laurence Fishburne"),
-    new Ator(4, "Joe Pantoliano"),
-    new Ator(5, "Hugo Weaving"),
-    new Ator(6, "Antony Ray Parker")
-];
-let sinopse = "Um jovem programador (Keanu Reeves) é atormentado por estranhos pesadelos nos quais sempre está conectado por cabos a um imenso sistema de computadores do futuro. À medida que o sonho se repete, ele começa a levantar dúvidas sobre a realidade. E quando encontra os misteriosos Morpheus e Trinity, ele descobre que é vítima do Matrix, um sistema inteligente e artificial que manipula a mente das pessoas e cria a ilusão de um mundo real enquanto usa os cérebros e corpos dos indivíduos para produzir energia.";
-let cartaz = "https://img.elo7.com.br/product/zoom/2679A20/big-poster-filme-matrix-lo03-tamanho-90x60-cm-geek.jpg";
-let genero = ["Açao", "Ficção Científica"];
-let filme = new Filmes(
-    1,
-    "Matrix",
-    1999,
-    genero,
-    136,
-    sinopse,
-    cartaz,
-    direcao,
-    elenco,
-    14,
-    null
-);
-console.log(filme);
-*/
-
-
 let inputBuscarFilme = document.querySelector("#input-buscar-filme");
 let btnBuscarFilme = document.querySelector("#btn-buscar-filme");
 let listaFilmes = document.querySelector("#lista-filmes");
 let mostrarFilmes = document.getElementById("mostrar-filme");
-let fundo = document.getElementById('mostrar-fora');
+let fundo = document.getElementById("filme-sai");
+let navFavoritos = document.querySelector("#nav-favoritos");
 //document.querySelector("#mostrar-detalhes").style.display = "none";
 
-function divSome(){
+function divSai(){
     fundo.style.display = "none";
     mostrarFilmes.style.display = "none";
 }
@@ -54,20 +18,18 @@ btnBuscarFilme.onclick = () => {
           .then((resp)=> resp.json())
           .then((resp)=> {
               resp.Search.forEach((item)=>{
-                  console.log(item);
+                  //console.log(item);
                   let filme=new Filme(
-                      item.imdbID,
-                      item.Title,
-                      item.Year,
-                      item.Type,
-                      null,
-                      null,
-                      item.Poster,
-                      null,    
-                      null,
-                      null,
-                      null,
-                      null
+                        item.imdbID,
+                        item.Title,
+                        item.Year,
+                        item.Type,
+                        null,
+                        item.Poster,
+                        null,    
+                        null,
+                        null,
+                        null
                   );
                   filmes.push(filme);
                  
@@ -82,30 +44,18 @@ btnBuscarFilme.onclick = () => {
     return false;
   }
 
-
 let listarFilmes = async (filmes) => {
-    //listaFilmes.style.display = "flex";
     listaFilmes.innerHTML = "";
-    //mostrarFilmes.style.display = "flex";
-    //mostrarFilmes.innerHTML = "";
-    console.log(listaFilmes);
-    //document.querySelector("#mostrar-filme").innerhtml="";
-    //document.querySelector("#mostrar-filme").style.display = "none";
     if(filmes.length > 0) {
         filmes.forEach(async(filme) => {
-            console.log(filme);
-            listaFilmes.appendChild(await filme.getCard());
-            //console.log("*");
-            //console.log(filme.getBtnDetalhes());
-            filme.getBtnDetalhes().onclick = async() => {
-                //console.log(1);
-                listaFilmes.style.display = "none";
+            listaFilmes.appendChild(filme.getCard());
+            filme.getBtnDetalhes().onclick = () => {
                 detalhesFilme(filme.id);
                 mostrarFilmes.innerHTML = "";
-                let botao = document.createElement('img');
-                botao.setAttribute("src","./img/botao-fechar.png");
-                botao.setAttribute("onclick","divSome()");
-                mostrarFilmes.appendChild(botao);
+                let bot = document.createElement('img');
+                bot.setAttribute('src','./img/botao-fechar.png');
+                bot.setAttribute('onclick','divSai()');
+                mostrarFilmes.appendChild(bot);
                 mostrarFilmes.style.display = "block";
                 fundo.style.display = "block";
             }
@@ -132,20 +82,21 @@ let detalhesFilme = async (id) =>{
             resp.imdbRating
         );
         
-        
-        console.log(filme.getDetalhesFilme());
         mostrarFilmes.style.display = "block";
         mostrarFilmes.appendChild(filme.getDetalhesFilme());
+        console.log(filme);
         //document.querySelector("#mostrar-filme").appendChild(filme.getDetalhesFilme());
         //console.log(filme);
         /*document.querySelector("#btnFechar").onclick = () =>{
             document.querySelector("#lista-filmes").style.display="flex";
             document.querySelector("#mostrar-filme").innerHTML="";
             document.querySelector("#mostrar-filme").style.display="none";
-        }    
-        document.querySelector("#btnSalvar").onclick = () =>{
-            salvarFilme(filme);
+        } 
+        */   
+        document.querySelector("#btnFavoritar").onclick = () =>{
+            FavoritarFilme(filme);
         }
+        /*
         document.querySelector("#lista-filmes").style.display="none";
         document.querySelector("#mostrar-filme").style.display="flex"*/
     });

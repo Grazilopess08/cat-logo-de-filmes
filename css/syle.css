@@ -5,6 +5,7 @@
 
 body{
     background-color: #000;
+    color: #fff;
 }
 
 #logo{
@@ -35,18 +36,27 @@ button.btn-outline-success{
     background-color: #000;
     color: #fff;
     border-color: #c3ff75;
+    border: 20px;
 }
-
 
 h5.card-title{
     height: 65px;
+    background-color: #000;
+    color: #fff;
+}
+
+h3.card-title1{
+    height: 35px;
+    background-color: #000;
+    color: #fff;
 }
 
 img.card-img-topz{
     height: 200px;
-    border-radius: 5px;
-    margin: 5px;
+    padding: 5px;
     height: 320px;
+    background-color: #000;
+    color: #fff;
 }
 
 .info-movie{
@@ -65,10 +75,9 @@ img.card-img-topz{
     flex-wrap: wrap;
     padding-top: 2rem;
     padding-bottom: 2rem;
-}
-
-#mostrar-filmes{
-    display: block;
+    background-color: #000;
+    color: #fff;
+    min-height: 95vh;
 }
 
 a.nav-link{
@@ -88,8 +97,54 @@ input{
     border-radius: 5px;
     height: 35px;
     background-color: #c3ff75;
+    max-width: 100%;
 }
 
-div.detalhes-body{
+#filme-sai{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 9;
+    top: 0;
+    left: 0;
+    display: none;
+}
+#mostrar-filmes{
+    border-radius: 10px;
+    width: 60vw;
+    background-color: #000;
+    color: #fff;
+    z-index: 10;
+    position: fixed;
+    left: 20vw;
+    top: 5vh;
+    float: left;
+    display: none;
+    padding: 1rem;
+    margin-top: 10vh;
+}
+.tudo{
+    margin: auto;
+    max-width: 700px;
+}
+#btnFavoritar{
+    align-items: center;
+    justify-content: center;
+    width: 240px;
+    justify-content: center;
+    padding: 5px;
+    margin: 20px;
+    height: 35px;
     background-color: #c3ff75;
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+img.img-fluid.rounded-start{
+    width: 240px;
+    margin: 20px;
+    padding: 5px;
+    height: 320px;  
+    justify-items: center; 
+    border-radius: 10px;
 }

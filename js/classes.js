@@ -85,59 +85,81 @@ class Filme
     }
 
     getDetalhesFilme = () => {
-        let detalhesFilme = document.createElement("div");
-        detalhesFilme.setAttribute("class","detalhesFilme");
-        detalhesFilme.setAttribute("style","display: flex; padding:1.5rem;")
+        let divTudo = document.createElement("div");
+        divTudo.setAttribute("class","tudo");
+        //detalhesFilme.setAttribute("style","display: flex; padding:1.5rem;")
         
+        let divUm = document.createElement('div');
+        divUm.setAttribute('class','row g-0');
+        divTudo.appendChild(divUm);
+
+        let divDois = document.createElement('div');
+        divDois.setAttribute('class','col-md-6');
+        divUm.appendChild(divDois);
+
         let img = document.createElement('img');
         img.style.float = 'left';
         img.setAttribute('src',this.cartaz);
         img.setAttribute('class','img-fluid rounded-start');
-        img.setAttribute('alt','...');
+        divDois.appendChild(img);
         
-        let detalhesBody = document.createElement("div");
-        detalhesBody.setAttribute("class","detalhes-body");
-        detalhesBody.setAttribute("style","margin-left:1.5rem;");
-        
-        let hDetalhesTitle = document.createElement("h5");
-        hDetalhesTitle.setAttribute("class","detalhes-title");
-        hDetalhesTitle.setAttribute("style","text-align:center;");
-        hDetalhesTitle.appendChild(document.createTextNode(this.titulo));
-        
-        let divDetalhesFilmes = document.createElement("div");
-        divDetalhesFilmes.setAttribute("style","display:flex; justify-content:space-around; flex-direction: column; align-items: center;")
+        let btnFavoritar = document.createElement('button');
+        btnFavoritar.appendChild(document.createTextNode('Favoritar'));
+        btnFavoritar.setAttribute('id', 'btnFavoritar');
+        btnFavoritar.setAttribute('class','img-fluid rounded-start');
 
-        let divAno = document.createElement("div");
-        divAno.appendChild(document.createTextNode(this.ano));
-        let divGenero = document.createElement("div");
-        divGenero.appendChild(document.createTextNode(this.genero));
-        let divDuracao = document.createElement("div");
-        divDuracao.appendChild(document.createTextNode(this.duracao));
-        let divSinopse = document.createElement("div");
-        divSinopse.appendChild(document.createTextNode(this.sinopse));
-        let divDirecao = document.createElement("div");
-        divDirecao.appendChild(document.createTextNode(this.direcao));
-        let divElenco = document.createElement("div");
-        divElenco.appendChild(document.createTextNode(this.elenco));
-        let divAvaliacao = document.createElement("div");
-        divAvaliacao.appendChild(document.createTextNode(this.avaliacao));
+        let divBtn = document.createElement('div');
+        divBtn.appendChild(btnFavoritar);
+        divDois.appendChild(divBtn);
+
+        let divTres = document.createElement('div');
+        divTres.setAttribute('class','col-md-6');
+        divUm.appendChild(divTres);
+
+        let divCardBody = document.createElement("div");
+        divCardBody.setAttribute("class","card-body");
+        divTres.appendChild(divCardBody);
         
-        divDetalhesFilmes.appendChild(divAno);
-        divDetalhesFilmes.appendChild(divGenero);
-        divDetalhesFilmes.appendChild(divDuracao);
-        divDetalhesFilmes.appendChild(divSinopse);
-        divDetalhesFilmes.appendChild(divDirecao);
-        divDetalhesFilmes.appendChild(divElenco);
-        divDetalhesFilmes.appendChild(divAvaliacao);
-
-        detalhesFilme.appendChild(img);
-        detalhesFilme.appendChild(detalhesBody);
-
-        detalhesBody.appendChild(hDetalhesTitle);
-        detalhesBody.appendChild(divDetalhesFilmes);
+        let title1 = document.createElement("h3");
+        title1.setAttribute("class","card-title1");
+        //hTitle1.setAttribute("style","text-align:center;");
+        title1.appendChild(document.createTextNode(this.titulo));
+        divcardbody.appendChild(title1);
+        
+        let ano = document.createElement('p');
+        ano.setAttribute('class','card-text');
+        ano.appendChild(document.createTextNode(this.ano));
+        divCardBody.appendChild(ano);
+        let sinopse = document.createElement('p');
+        sinopse.setAttribute('class','card-text');
+        sinopse.appendChild(document.createTextNode(this.sinopse));
+        divCardBody.appendChild(sinopse);
+        let genero = document.createElement('p');
+        genero.setAttribute('class','card-text');
+        genero.appendChild(document.createTextNode(this.genero));
+        divCardBody.appendChild(genero);        
+        let duracao = document.createElement('p');
+        duracao.setAttribute('class','card-text');
+        duracao.appendChild(document.createTextNode(this.duracao));
+        divCardBody.appendChild(duracao); 
+        let direcao = document.createElement('p');
+        direcao.setAttribute('class','card-text');
+        direcao.appendChild(document.createTextNode(this.direcao));
+        divCardBody.appendChild(direcao);
+        let elenco = document.createElement('p');
+        elenco.setAttribute('class','card-text');
+        elenco.appendChild(document.createTextNode(this.elenco));
+        divCardBody.appendChild(elenco);
+        let classificacao = document.createElement('p');
+        classificacao.setAttribute('class','card-text');
+        classificacao.appendChild(document.createTextNode(this.classificacao));
+        divCardBody.appendChild(classificacao);        
+        let avaliacao = document.createElement('p');
+        avaliacao.setAttribute('class','card-text');
+        avaliacao.appendChild(document.createTextNode(this.avaliacao));
+        divCardBody.appendChild(avaliacao);
     
-        
-        return detalhesFilme;
+        return divTudo;
     }
     
 }

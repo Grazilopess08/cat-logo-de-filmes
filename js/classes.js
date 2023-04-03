@@ -118,7 +118,7 @@ class Filme
         divCardBody.setAttribute("class","card-body");
         divTres.appendChild(divCardBody);
         
-        let title1 = document.createElement("h3");
+        let title1 = document.createElement("h4");
         title1.setAttribute("class","card-title1");
         //hTitle1.setAttribute("style","text-align:center;");
         title1.appendChild(document.createTextNode(this.titulo));

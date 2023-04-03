@@ -72,7 +72,7 @@ class Filme
     }
 
     setBtnDetalhes=() => {
-        this.btnDetalhes = document.createElement('button');
+        this.btnDetalhes = document.createElement("button");
         this.btnDetalhes.appendChild(document.createTextNode("Detalhes"));
         this.btnDetalhes.setAttribute("id", this.id);
         this.btnDetalhes.setAttribute("class", "btnDetalhesFilme");
@@ -87,12 +87,12 @@ class Filme
         divTudo.setAttribute("class","tudo");
         //detalhesFilme.setAttribute("style","display: flex; padding:1.5rem;")
         
-        let divUm = document.createElement('div');
-        divUm.setAttribute('class','row g-0');
+        let divUm = document.createElement("div");
+        divUm.setAttribute("class","row g-0");
         divTudo.appendChild(divUm);
 
-        let divDois = document.createElement('div');
-        divDois.setAttribute('class','col-md-6');
+        let divDois = document.createElement("div");
+        divDois.setAttribute("class","col-md-6");
         divUm.appendChild(divDois);
 
         let img = document.createElement('img');

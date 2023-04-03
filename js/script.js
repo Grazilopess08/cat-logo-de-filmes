@@ -52,9 +52,9 @@ let listarFilmes = async (filmes) => {
             filme.getBtnDetalhes().onclick = () => {
                 detalhesFilme(filme.id);
                 mostrarFilmes.innerHTML = "";
-                let bot = document.createElement('img');
-                bot.setAttribute('src','./img/fecha.png');
-                bot.setAttribute('onclick','divSai()');
+                let bot = document.createElement("img");
+                bot.setAttribute("src","./img/fecha.png");
+                bot.setAttribute("onclick","divSai()");
                 mostrarFilmes.appendChild(bot);
                 mostrarFilmes.style.display = "block";
                 fundo.style.display = "block";
@@ -95,7 +95,7 @@ let detalhesFilme = async (id) =>{
         document.querySelector("#btnFavoritar").onclick = () =>{
             FavoritarFilme(filme);
         }
-        let filmesString = localStorage.getItem('favoritos');
+        let filmesString = localStorage.getItem("favoritos");
         var filmes = JSON.parse(filmesString);
         filmes=JSON.stringify(filmes);
         /*
@@ -106,7 +106,7 @@ let detalhesFilme = async (id) =>{
 }
 
 function listarFavoritos(){
-    let favoritos = localStorage.getItem('favoritos');
+    let favoritos = localStorage.getItem("favoritos");
     favoritos=JSON.parse(favoritos);
     let filmes = new Array();
     favoritos.forEach((item) =>{
@@ -129,17 +129,27 @@ function listarFavoritos(){
 }
 
 let FavoritarFilme = (filme) => {
-    let filmesString = localStorage.getItem('favoritos');
+    let filmesString = localStorage.getItem("favoritos");
     let filmes = null;
+    let jt=0;
     if(filmesString){
         filmes=JSON.parse(filmesString);
+        filmes.forEach((item)=>{
+            if(item.id==filme.id){
+                jt++;
+                return false;
+            }
+        });
         filmes.push(filme);
     }
     else{
         filmes=[filme];
     }
-    filmes = JSON.stringify(filmes);
-    localStorage.setItem('favoritos',filmes);
+    if(jt==0){
+        filmes = JSON.stringify(filmes);
+        // console.log(filmes);
+        localStorage.setItem("favoritos",filmes);
+    }
     
 
 }
@@ -148,16 +158,16 @@ navFavoritos.onclick = () =>{
     listarFavoritos();
 }
 
-/*let filmeString = localStorage.getItem('filmesFavoritos');
+/*let filmeString = localStorage.getItem("filmesFavoritos");
 var filme = JSON.parse(filmeString);
 filmes.push(filme);
 filme=JSON.stringify(filme);
-localStorage.setItem('filmesFavoritos', filme);
+localStorage.setItem("filmesFavoritos", filme);
 
 let navFavoritos = document.querySelector("#nav-favoritos");
 navFavoritos.onclick = () =>{
     listarFavoritos= function () {
-        let filmesFavoritos = localStorage.getItem('filmesFavoritos');
+        let filmesFavoritos = localStorage.getItem("filmesFavoritos");
         filmesFavoritos = JOSON.parse(filmesFavoritos);
     } 
 }

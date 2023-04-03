@@ -39,6 +39,12 @@ button.btn-outline-success{
     border: 20px;
 }
 
+.card-body{
+    background-color: #000;
+    color: #fff;
+    padding: 1rem;
+}
+
 h5.card-title{
     height: 65px;
     background-color: #000;
@@ -109,6 +115,7 @@ input{
     left: 0;
     display: none;
 }
+
 #mostrar-filmes{
     border-radius: 10px;
     width: 60vw;
@@ -123,10 +130,12 @@ input{
     padding: 1rem;
     margin-top: 10vh;
 }
+
 .tudo{
     margin: auto;
     max-width: 700px;
 }
+
 #btnFavoritar{
     align-items: center;
     justify-content: center;

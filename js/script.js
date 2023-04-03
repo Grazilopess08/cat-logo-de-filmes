@@ -67,7 +67,7 @@ let detalhesFilme = async (id) =>{
     fetch("http://www.omdbapi.com/?apikey=ee5ea508&i="+id)
     .then((resp)=>resp.json())
     .then((resp)=>{
-        let filme=new Filme(
+        let filme = new Filme(
             resp.imdbID,
             resp.Title,
             resp.Year,

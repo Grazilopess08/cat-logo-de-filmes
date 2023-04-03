@@ -1,7 +1,7 @@
 let inputBuscarFilme = document.querySelector("#input-buscar-filme");
 let btnBuscarFilme = document.querySelector("#btn-buscar-filme");
 let listaFilmes = document.querySelector("#lista-filmes");
-let mostrarFilmes = document.getElementById("mostrar-filme");
+let mostrarFilmes = document.getElementById("mostrar-filmes");
 let fundo = document.getElementById("filme-sai");
 let navFavoritos = document.querySelector("#nav-favoritos");
 //document.querySelector("#mostrar-detalhes").style.display = "none";
@@ -53,7 +53,7 @@ let listarFilmes = async (filmes) => {
                 detalhesFilme(filme.id);
                 mostrarFilmes.innerHTML = "";
                 let bot = document.createElement('img');
-                bot.setAttribute('src','./img/botao-fechar.png');
+                bot.setAttribute('src','./img/fecha.png');
                 bot.setAttribute('onclick','divSai()');
                 mostrarFilmes.appendChild(bot);
                 mostrarFilmes.style.display = "block";
@@ -64,7 +64,6 @@ let listarFilmes = async (filmes) => {
 }
 
 let detalhesFilme = async (id) =>{
-    console.log(id);
     fetch("http://www.omdbapi.com/?apikey=ee5ea508&i="+id)
     .then((resp)=>resp.json())
     .then((resp)=>{

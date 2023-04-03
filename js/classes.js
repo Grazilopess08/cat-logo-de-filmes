@@ -6,7 +6,6 @@ class Ator
     }
 }
 
-
 class Diretor
 {
     constructor(id, nome){
@@ -15,10 +14,9 @@ class Diretor
     }
 }
 
-
 class Filme
 {
-    constructor(id, titulo, ano, genero, duracao, sinopse, cartaz, direcao, elenco, classificacao, avaliacao){
+    constructor(id, titulo, ano, genero, duracao, cartaz, sinopse, direcao, elenco, classificacao, avaliacao){
         this.id=id;
         this.titulo=titulo;
         this.ano=ano;
@@ -35,7 +33,7 @@ class Filme
     }
 
 
-    getCard = async () => {
+    getCard = () => {
     let card = document.createElement("div");
     card.setAttribute("class","card");
     let imgCartaz = document.createElement("img");
@@ -124,8 +122,8 @@ class Filme
         title1.setAttribute("class","card-title1");
         //hTitle1.setAttribute("style","text-align:center;");
         title1.appendChild(document.createTextNode(this.titulo));
-        divcardbody.appendChild(title1);
-        
+        divCardBody.appendChild(title1);
+
         let ano = document.createElement('p');
         ano.setAttribute('class','card-text');
         ano.appendChild(document.createTextNode(this.ano));

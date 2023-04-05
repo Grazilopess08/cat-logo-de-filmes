@@ -95,23 +95,29 @@ class Filme
         divDois.setAttribute("class","col-md-6");
         divUm.appendChild(divDois);
 
-        let img = document.createElement('img');
-        img.style.float = 'left';
-        img.setAttribute('src',this.cartaz);
-        img.setAttribute('class','img-fluid rounded-start');
+        let img = document.createElement("img");
+        img.style.float = "left";
+        img.setAttribute("src",this.cartaz);
+        img.setAttribute("class","img-fluid rounded-start");
         divDois.appendChild(img);
         
-        let btnFavoritar = document.createElement('button');
-        btnFavoritar.appendChild(document.createTextNode('Favoritar'));
-        btnFavoritar.setAttribute('id', 'btnFavoritar');
-        btnFavoritar.setAttribute('class','img-fluid rounded-start');
+        let btnFavoritar = document.createElement("button");
+        btnFavoritar.appendChild(document.createTextNode("Favoritar"));
+        btnFavoritar.setAttribute("id", "btnFavoritar");
+        btnFavoritar.setAttribute("class","img-fluid rounded-start");
 
-        let divBtn = document.createElement('div');
+        let btnDesfavoritar = document.createElement("button");
+        btnDesfavoritar.appendChild(document.createTextNode("Desfavoritar"));
+        btnDesfavoritar.setAttribute("id", "btnDesfavoritar");
+        btnDesfavoritar.setAttribute("class","img-fluid rounded-start");
+
+        let divBtn = document.createElement("div");
         divBtn.appendChild(btnFavoritar);
+        divBtn.appendChild(btnDesfavoritar);
         divDois.appendChild(divBtn);
 
-        let divTres = document.createElement('div');
-        divTres.setAttribute('class','col-md-6');
+        let divTres = document.createElement("div");
+        divTres.setAttribute("class","col-md-6");
         divUm.appendChild(divTres);
 
         let divCardBody = document.createElement("div");
@@ -124,36 +130,36 @@ class Filme
         title1.appendChild(document.createTextNode(this.titulo));
         divCardBody.appendChild(title1);
 
-        let ano = document.createElement('p');
-        ano.setAttribute('class','card-text');
+        let ano = document.createElement("p");
+        ano.setAttribute("class","card-text");
         ano.appendChild(document.createTextNode(this.ano));
         divCardBody.appendChild(ano);
-        let sinopse = document.createElement('p');
-        sinopse.setAttribute('class','card-text');
+        let sinopse = document.createElement("p");
+        sinopse.setAttribute("class","card-text");
         sinopse.appendChild(document.createTextNode(this.sinopse));
         divCardBody.appendChild(sinopse);
-        let genero = document.createElement('p');
-        genero.setAttribute('class','card-text');
+        let genero = document.createElement("p");
+        genero.setAttribute("class","card-text");
         genero.appendChild(document.createTextNode(this.genero));
         divCardBody.appendChild(genero);        
-        let duracao = document.createElement('p');
-        duracao.setAttribute('class','card-text');
+        let duracao = document.createElement("p");
+        duracao.setAttribute("class","card-text");
         duracao.appendChild(document.createTextNode(this.duracao));
         divCardBody.appendChild(duracao); 
-        let direcao = document.createElement('p');
-        direcao.setAttribute('class','card-text');
+        let direcao = document.createElement("p");
+        direcao.setAttribute("class","card-text");
         direcao.appendChild(document.createTextNode(this.direcao));
         divCardBody.appendChild(direcao);
-        let elenco = document.createElement('p');
-        elenco.setAttribute('class','card-text');
+        let elenco = document.createElement("p");
+        elenco.setAttribute("class","card-text");
         elenco.appendChild(document.createTextNode(this.elenco));
         divCardBody.appendChild(elenco);
-        let classificacao = document.createElement('p');
-        classificacao.setAttribute('class','card-text');
+        let classificacao = document.createElement("p");
+        classificacao.setAttribute("class","card-text");
         classificacao.appendChild(document.createTextNode(this.classificacao));
         divCardBody.appendChild(classificacao);        
-        let avaliacao = document.createElement('p');
-        avaliacao.setAttribute('class','card-text');
+        let avaliacao = document.createElement("p");
+        avaliacao.setAttribute("class","card-text");
         avaliacao.appendChild(document.createTextNode(this.avaliacao));
         divCardBody.appendChild(avaliacao);
     

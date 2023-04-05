@@ -95,6 +95,9 @@ let detalhesFilme = async (id) =>{
         document.querySelector("#btnFavoritar").onclick = () =>{
             FavoritarFilme(filme);
         }
+        document.querySelector("#btnDesfavoritar").onclick = () =>{
+            DesfavoritarFilme(filme);
+        }
         let filmesString = localStorage.getItem("favoritos");
         var filmes = JSON.parse(filmesString);
         filmes=JSON.stringify(filmes);
@@ -149,6 +152,36 @@ let FavoritarFilme = (filme) => {
         filmes = JSON.stringify(filmes);
         // console.log(filmes);
         localStorage.setItem("favoritos",filmes);
+    }
+    
+
+}
+
+let DesfavoritarFilme = (filme) => {
+    let filmesString = localStorage.getItem("favoritos");
+    let filmes = null;
+    let jt=0;
+    if(filmesString){
+        filmes=JSON.parse(filmesString);
+        filmes.forEach((item)=>{
+            if(item.id==filme.id){
+                jt++;
+                return false;
+            }
+        });
+        filmes.push(filme);
+        filmes = JSON.stringify(filmes);
+        // console.log(filmes);
+        localStorage.removeItem("favoritos",filmes);
+        console.log(filme);
+    }
+    else{
+        filmes=[filme];
+    }
+    if(jt==0){
+        filmes = JSON.stringify(filmes);
+        // console.log(filmes);
+        localStorage.removeItem("favoritos",filmes);
     }
     
 

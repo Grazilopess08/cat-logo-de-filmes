@@ -118,17 +118,17 @@ input{
 
 #mostrar-filmes{
     border-radius: 10px;
-    width: 60vw;
+    width: 70vw;
     background-color: #000;
     color: #fff;
     z-index: 10;
     position: fixed;
-    left: 20vw;
+    left: 15vw;
     top: 5vh;
     float: left;
     display: none;
     padding: 1rem;
-    margin-top: 10vh;
+    margin-top: 5vh;
 }
 
 .tudo{
@@ -142,7 +142,24 @@ input{
     width: 240px;
     justify-content: center;
     padding: 5px;
-    margin: 20px;
+    margin: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 35px;
+    background-color: #c3ff75;
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+#btnDesfavoritar{
+    align-items: center;
+    justify-content: center;
+    width: 240px;
+    justify-content: center;
+    padding: 5px;
+    margin: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
     height: 35px;
     background-color: #c3ff75;
     max-width: 100%;

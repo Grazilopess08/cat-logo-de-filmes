@@ -22,14 +22,14 @@ btnBuscarFilme.onclick = () => {
                   let filme=new Filme(
                         item.imdbID,
                         item.Title,
-                        item.Year,
+                        "",
                         item.Type,
                         null,
                         item.Poster,
                         null,    
                         null,
                         null,
-                        null
+                        item.Year
                   );
                   filmes.push(filme);
                  
@@ -157,34 +157,22 @@ let FavoritarFilme = (filme) => {
 
 }
 
-let DesfavoritarFilme = (filme) => {
+let DesfavoritarFilme = (filme) =>{
     let filmesString = localStorage.getItem("favoritos");
     let filmes = null;
-    let jt=0;
     if(filmesString){
-        filmes=JSON.parse(filmesString);
-        filmes.forEach((item)=>{
-            if(item.id==filme.id){
-                jt++;
-                return false;
-            }
-        });
-        filmes.push(filme);
-        filmes = JSON.stringify(filmes);
-        // console.log(filmes);
-        localStorage.removeItem("favoritos",filmes);
-        console.log(filme);
+        filmes = JSON.parse(filmesString);
+    for(let i = 0; i < filmes.length; i++){
+        if(filmes[i].id === filme.id){
+            filmes.splice(i, 1);
+            break;
+        }
     }
-    else{
-        filmes=[filme];
     }
-    if(jt==0){
-        filmes = JSON.stringify(filmes);
-        // console.log(filmes);
-        localStorage.removeItem("favoritos",filmes);
-    }
-    
 
+    filmes = JSON.stringify(filmes);
+    // console.log(filmes);
+    localStorage.setItem("favoritos", filmes);
 }
   
 navFavoritos.onclick = () =>{
